@@ -19,7 +19,6 @@ export const openComposeModal = (data) => {
     emailSubjectInput.value = data.subject || '';
     emailTextarea.value = data.text || '';
 
-    // Check for and display the actionNeeded message
     if (data.actionNeeded) {
         actionNeededElement.textContent = `Action Needed: ${data.actionNeeded}`;
         actionNeededElement.classList.remove('hidden');

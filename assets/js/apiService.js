@@ -1,7 +1,9 @@
 // js/apiService.js
 
 // Define the base URL for your API
-const API_BASE_URL = 'https://job-application-email-message-generator.onrender.com/api';
+
+const API_BASE_URL = 'http://localhost:3000/api';
+
 
 /**
  * Handles the API call to compose an email.

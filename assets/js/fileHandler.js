@@ -39,6 +39,27 @@ export const setupFileListeners = (setFileCallback, updateButtonCallback) => {
         }
     });
 
+    // Paste functionality
+    dropzone.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        let fileFound = false;
+        for (const item of items) {
+            if (item.kind === 'file' && item.type.startsWith('image/')) {
+                const file = item.getAsFile();
+                if (file) {
+                    setFileCallback(file);
+                    jobDetailsTextarea.value = ''; // Clear text
+                    fileStatus.textContent = `Pasted Image: ${file.name || 'Pasted Image'}`;
+                    fileStatus.classList.remove('hidden');
+                    updateButtonCallback();
+                    fileFound = true;
+                    break;
+                }
+            }
+        }
+    });
+
     // Click to browse functionality
     dropzone.addEventListener('click', () => fileInput.click());
 
